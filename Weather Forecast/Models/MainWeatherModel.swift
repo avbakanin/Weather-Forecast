@@ -106,48 +106,48 @@ struct MainWeather {
     
     let humidity: Int
     
-    let date: String
-    
-    let fullDate: String
-    var dayOfTheWeekEN: String {
-        getNameOfTheDay(fromDate: fullDate)
-    }
-    var dayOfTheWeekStringRU: String {
-        switch dayOfTheWeekEN {
-        case "Sunday": return "Воскресенье"
-        case "Monday": return "Понедельник"
-        case "Tuesday": return "Вторник"
-        case "Wednesday": return "Среда"
-        case "Thursday": return "Четверг"
-        case "Friday": return "Пятница"
-        case "Saturday": return "Суббота"
-        default: return ""
-        }
-    }
-    
-    let dayForecastIcon: Int
-    var dayForecastIconImageName: String {
-        switch dayForecastIcon {
-        case 200...232: return "cloud.bolt.rain.fill"
-        case 300...321: return "cloud.drizzle.fill"
-        case 500...531: return "cloud.rain.fill"
-        case 600...622: return "cloud.snow.fill"
-        case 700...781: return "smoke.fill"
-        case 800: return "sun.min.fill"
-        case 801...804: return "cloud.fill"
-        default: return ""
-        }
-    }
-    
-    let dayTemp: Double
-    var dayTempString: String {
-        return String(format: "%.0f", dayTemp)
-    }
-    
-    let feelsLikeDayTemp: Double
-    var feelsLikeDayTempString: String {
-        return String(format: "%.0f", feelsLikeDayTemp)
-    }
+//    let date: String
+//    
+//    let fullDate: String
+//    var dayOfTheWeekEN: String {
+//        getNameOfTheDay(fromDate: fullDate)
+//    }
+//    var dayOfTheWeekStringRU: String {
+//        switch dayOfTheWeekEN {
+//        case "Sunday": return "Воскресенье"
+//        case "Monday": return "Понедельник"
+//        case "Tuesday": return "Вторник"
+//        case "Wednesday": return "Среда"
+//        case "Thursday": return "Четверг"
+//        case "Friday": return "Пятница"
+//        case "Saturday": return "Суббота"
+//        default: return ""
+//        }
+//    }
+//    
+//    let dayForecastIcon: Int
+//    var dayForecastIconImageName: String {
+//        switch dayForecastIcon {
+//        case 200...232: return "cloud.bolt.rain.fill"
+//        case 300...321: return "cloud.drizzle.fill"
+//        case 500...531: return "cloud.rain.fill"
+//        case 600...622: return "cloud.snow.fill"
+//        case 700...781: return "smoke.fill"
+//        case 800: return "sun.min.fill"
+//        case 801...804: return "cloud.fill"
+//        default: return ""
+//        }
+//    }
+//    
+//    let dayTemp: Double
+//    var dayTempString: String {
+//        return String(format: "%.0f", dayTemp)
+//    }
+//    
+//    let feelsLikeDayTemp: Double
+//    var feelsLikeDayTempString: String {
+//        return String(format: "%.0f", feelsLikeDayTemp)
+//    }
     
     init?(weatherForecast: WeatherForecast) {
         currentTemp = weatherForecast.list.first?.main.temp ?? 0
@@ -167,10 +167,10 @@ struct MainWeather {
             guard let weatherId = weatherForecast.list[i].weather.first?.id else { return nil }
             byTimeConditionCodes.append(weatherId)
         }
-        date = weatherForecast.list[6].dtTxt
-        fullDate = weatherForecast.list.first?.dtTxt ?? ""
-        dayForecastIcon = weatherForecast.list.first?.weather.first?.id ?? 0
-        dayTemp = weatherForecast.list.first?.main.temp ?? 0
-        feelsLikeDayTemp = weatherForecast.list.first?.main.feelsLike ?? 0
+//        date = weatherForecast.list[6].dtTxt
+//        fullDate = weatherForecast.list.first?.dtTxt ?? ""
+//        dayForecastIcon = weatherForecast.list.first?.weather.first?.id ?? 0
+//        dayTemp = weatherForecast.list.first?.main.temp ?? 0
+//        feelsLikeDayTemp = weatherForecast.list.first?.main.feelsLike ?? 0
     }
 }

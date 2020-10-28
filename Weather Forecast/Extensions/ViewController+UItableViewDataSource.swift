@@ -11,15 +11,15 @@ import UIKit
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return daysForecast.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "dayByDayForecastCell", for: indexPath) as! DayByDayForecastTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dayByDayCell", for: indexPath) as! DayByDayCell
         
         let dayForecast = daysForecast[indexPath.row]
         
-        cell.set(date: dayForecast)
+        cell.set(date: dayForecast)        
         
         return cell
     }

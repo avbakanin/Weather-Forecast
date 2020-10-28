@@ -7,13 +7,14 @@
 
 import UIKit
 
-class DayByDayForecastTableViewCell: UITableViewCell {
+class DayByDayCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dayOfTheWeekLabel: UILabel!
     @IBOutlet weak var dayForecastIcon: UIImageView!
     @IBOutlet weak var dayTemp: UILabel!
     @IBOutlet weak var feelsLikeDayTemp: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -32,7 +32,7 @@ class WeatherViewController: UIViewController {
     
     var networkWeatherManager = NetworkWeatherManager()
     
-    var daysForecast: [DayForecast] = [DayForecast(date: "rfrfrf", dayOfTheWeek: "rfrfrf", dayForecastIcon: UIImage(systemName: "cloud.fill")!, dayTemp: "33", feelsLikeDayTemp: "33")]
+    var daysForecast: [DayForecast] = [DayForecast(date: "23 октября", dayOfTheWeek: "Понедельник", dayForecastIcon: UIImage(systemName: "cloud.fill")!, dayTemp: "7 °", feelsLikeDayTemp: "7 °")]
         
     lazy var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
@@ -81,7 +81,7 @@ class WeatherViewController: UIViewController {
         windImage.image = UIImage(systemName: "wind")
         pressureImage.image = UIImage(systemName: "speedometer")
         
-        dayByDayTableView.layer.cornerRadius = 10
+        dayByDayTableView.layer.cornerRadius = dayByDayTableView.frame.size.height / 30
         
     }
     
