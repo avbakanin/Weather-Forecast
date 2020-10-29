@@ -30,6 +30,8 @@ extension WeatherViewController {
         }
         
         let searchAction = UIAlertAction(title: "Найти", style: .default) { (action) in
+            self.daysForecast = []
+            self.dayByDayTableView.reloadData()
             guard let textField = alert.textFields?.first else { return }
             guard let city = textField.text else { return }
             if city != "" {
@@ -38,9 +40,10 @@ extension WeatherViewController {
             }
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
+
         alert.addAction(searchAction)
         alert.addAction(cancelAction)
+        
         
         present(alert, animated: true, completion: nil)
     }

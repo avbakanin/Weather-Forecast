@@ -14,6 +14,7 @@ class DayByDayCell: UITableViewCell {
     @IBOutlet weak var dayForecastIcon: UIImageView!
     @IBOutlet weak var dayTemp: UILabel!
     @IBOutlet weak var feelsLikeDayTemp: UILabel!
+    @IBOutlet weak var iconCodeLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -22,10 +23,12 @@ class DayByDayCell: UITableViewCell {
     }
     
     func set(date: DayForecast) {
-        self.dateLabel.text = date.date
-        self.dayOfTheWeekLabel.text = date.dayOfTheWeek
-        self.dayForecastIcon.image = date.dayForecastIcon
-        self.dayTemp.text = date.dayTemp
-        self.feelsLikeDayTemp.text = date.feelsLikeDayTemp
+        
+            self.dateLabel.text = date.date
+            self.dayOfTheWeekLabel.text = date.dayOfTheWeek
+            self.dayForecastIcon.image = date.dayForecastIcon
+            self.dayTemp.text = date.dayTemp
+            self.feelsLikeDayTemp.text = date.feelsLikeDayTemp
+            self.iconCodeLabel.text = String(date.iconCode)
     }
 }

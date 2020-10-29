@@ -32,8 +32,8 @@ class WeatherViewController: UIViewController {
     
     var networkWeatherManager = NetworkWeatherManager()
     
-    var daysForecast: [DayForecast] = [DayForecast(date: "23 октября", dayOfTheWeek: "Понедельник", dayForecastIcon: UIImage(systemName: "cloud.fill")!, dayTemp: "7 °", feelsLikeDayTemp: "7 °")]
-        
+    var daysForecast: [DayForecast] = []
+    
     lazy var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
         lm.delegate = self
@@ -49,19 +49,32 @@ class WeatherViewController: UIViewController {
             [weak self] mainWeather in
             guard let self = self else { return }
             self.updateUserInterfaceWith(weather: mainWeather)
+            
+            DispatchQueue.main.async {
+                self.dayByDayTableView.reloadData()
+            }
         }
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
         }
         
         setImagesForIcons()
+        
     }
     
     @IBAction func forecastByLocation(_ sender: UIButton) {
+        self.daysForecast = []
+        self.dayByDayTableView.reloadData()
         networkWeatherManager.onCompletion = {
             [weak self] mainWeather in
             guard let self = self else { return }
             self.updateUserInterfaceWith(weather: mainWeather)
+            
+            DispatchQueue.main.async {
+                self.dayByDayTableView.reloadData()
+            }
+            
         }
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
@@ -72,40 +85,12 @@ class WeatherViewController: UIViewController {
         findCityForecastAlertController(title: "Введите название города (на английском)", message: nil, style: .alert)
         { [unowned self] city in
             self.networkWeatherManager.fetchCurrentWeather(forRequestType: .city(city: city))
-        }
-    }
-    
-    private func setImagesForIcons() {
-        mainWeatherIcon.image = UIImage(systemName: "questionmark.circle")
-        
-        windImage.image = UIImage(systemName: "wind")
-        pressureImage.image = UIImage(systemName: "speedometer")
-        
-        dayByDayTableView.layer.cornerRadius = dayByDayTableView.frame.size.height / 30
-        
-    }
-    
-    private func updateUserInterfaceWith(weather: MainWeather) {
-        DispatchQueue.main.async {
-            self.mainCurretTempLabel.text =
-                "\(weather.currentTempString) °"
-            self.mainCityLabel.text = weather.city
-            self.mainWeatherIcon.image = UIImage(systemName: weather.systemIconNameString)
-            self.feelsLikeLabel.text = "Ощущается как \(weather.feelsLikeString) °"
-            self.windLabel.text = "\(weather.wind) м/с"
-            self.pressureLabel.text = "\(weather.pressureInMmHg) мм рт. ст."
-            self.humidityLabel.text = "\(weather.humidity) %"
-            for (timeLabel, time) in zip(self.timeLabels, weather.timeFormatted) {
-                timeLabel.text = time
+            
+            DispatchQueue.main.async {
+                self.dayByDayTableView.reloadData()
             }
-            for (bytimeWeather, timeTemp) in zip(self.byTimeWeatherTemps, weather.byTimeTempString) {
-                bytimeWeather.text = "\(timeTemp) °"
-            }
-            for (icon, code) in zip(self.byTimeWeatherIcons, weather.byTimeIconsNameString) {
-                icon.image = UIImage(systemName: code)
-            }
-//          self.daysForecast.append(DayForecast(date: weather.date, dayOfTheWeek: weather.dayOfTheWeekStringRU, dayForecastIcon: UIImage(systemName: weather.dayForecastIconImageName)!, dayTemp: weather.dayTempString, feelsLikeDayTemp: weather.feelsLikeDayTempString))
             
         }
     }
 }
+

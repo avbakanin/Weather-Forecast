@@ -22,6 +22,7 @@
 		5B5996E92543474400890F1A /* ViewController+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5996E82543474400890F1A /* ViewController+AlertController.swift */; };
 		5B67D3382544AD1500388F7E /* DayByDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B67D3372544AD1500388F7E /* DayByDayCell.swift */; };
 		5B67D33C2544AEA700388F7E /* ViewController+UItableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B67D33B2544AEA700388F7E /* ViewController+UItableViewDataSource.swift */; };
+		5BED36CF254B072C00A74A39 /* ViewController+UpdateElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED36CE254B072C00A74A39 /* ViewController+UpdateElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5B5996E82543474400890F1A /* ViewController+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+AlertController.swift"; sourceTree = "<group>"; };
 		5B67D3372544AD1500388F7E /* DayByDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayByDayCell.swift; sourceTree = "<group>"; };
 		5B67D33B2544AEA700388F7E /* ViewController+UItableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UItableViewDataSource.swift"; sourceTree = "<group>"; };
+		5BED36CE254B072C00A74A39 /* ViewController+UpdateElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UpdateElements.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				5B5996E2254346A800890F1A /* ViewController+CLLocationDelegate.swift */,
 				5B5996E82543474400890F1A /* ViewController+AlertController.swift */,
 				5B67D33B2544AEA700388F7E /* ViewController+UItableViewDataSource.swift */,
+				5BED36CE254B072C00A74A39 /* ViewController+UpdateElements.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				5B5996A62542CDB400890F1A /* SceneDelegate.swift in Sources */,
 				5B5996E3254346A800890F1A /* ViewController+CLLocationDelegate.swift in Sources */,
 				5B67D3382544AD1500388F7E /* DayByDayCell.swift in Sources */,
+				5BED36CF254B072C00A74A39 /* ViewController+UpdateElements.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

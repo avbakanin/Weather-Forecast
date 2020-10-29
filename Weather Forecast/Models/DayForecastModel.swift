@@ -14,4 +14,5 @@ struct DayForecast {
     let dayForecastIcon: UIImage
     let dayTemp: String
     let feelsLikeDayTemp: String
+    let iconCode: Int
 }

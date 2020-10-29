@@ -10,24 +10,12 @@ import UIKit
 
 struct MainWeather {
     
-    private func getTime(fromDate date: String) -> String {
+    private func getDate(fromDate date: String, formatter: String) -> String {
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "HH:mm"
-        
-        guard let date = dateFormatterGet.date(from: date)
-        else { return "There was an error decoding the string" }
-        return dateFormatterPrint.string(from: date)
-    }
-    
-    private func getNameOfTheDay(fromDate date: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "EEEE"
+        dateFormatterPrint.dateFormat = formatter
         
         guard let date = dateFormatterGet.date(from: date)
         else { return "There was an error decoding the string" }
@@ -52,7 +40,7 @@ struct MainWeather {
     var timeFormatted: [String] {
         var timeFormattedArray: [String] = []
         for i in timeForecast.indices {
-            timeFormattedArray.append(getTime(fromDate: self.timeForecast[i]))
+            timeFormattedArray.append(getDate(fromDate: self.timeForecast[i], formatter: "HH:mm"))
         }
         return timeFormattedArray
     }
@@ -106,48 +94,110 @@ struct MainWeather {
     
     let humidity: Int
     
-//    let date: String
-//    
-//    let fullDate: String
-//    var dayOfTheWeekEN: String {
-//        getNameOfTheDay(fromDate: fullDate)
-//    }
-//    var dayOfTheWeekStringRU: String {
-//        switch dayOfTheWeekEN {
-//        case "Sunday": return "Воскресенье"
-//        case "Monday": return "Понедельник"
-//        case "Tuesday": return "Вторник"
-//        case "Wednesday": return "Среда"
-//        case "Thursday": return "Четверг"
-//        case "Friday": return "Пятница"
-//        case "Saturday": return "Суббота"
-//        default: return ""
-//        }
-//    }
-//    
-//    let dayForecastIcon: Int
-//    var dayForecastIconImageName: String {
-//        switch dayForecastIcon {
-//        case 200...232: return "cloud.bolt.rain.fill"
-//        case 300...321: return "cloud.drizzle.fill"
-//        case 500...531: return "cloud.rain.fill"
-//        case 600...622: return "cloud.snow.fill"
-//        case 700...781: return "smoke.fill"
-//        case 800: return "sun.min.fill"
-//        case 801...804: return "cloud.fill"
-//        default: return ""
-//        }
-//    }
-//    
-//    let dayTemp: Double
-//    var dayTempString: String {
-//        return String(format: "%.0f", dayTemp)
-//    }
-//    
-//    let feelsLikeDayTemp: Double
-//    var feelsLikeDayTempString: String {
-//        return String(format: "%.0f", feelsLikeDayTemp)
-//    }
+    var fullDate: [String] = []
+    
+    var calendarDay: [String] {
+        var calendarDays: [String] = []
+        for i in fullDate.indices{
+            calendarDays.append(getDate(fromDate: fullDate[i], formatter: "dd"))
+        }
+        return calendarDays
+    }
+    
+    var monthNumber: [String] {
+        var monthesNumber: [String] = []
+        for i in fullDate.indices {
+            monthesNumber.append(getDate(fromDate: fullDate[i], formatter: "MM"))
+        }
+        return monthesNumber
+    }
+    
+    var monthName: [String] {
+        var monthesName: [String] = []
+        for i in monthNumber.indices {
+            switch monthNumber[i] {
+            case "1": monthesName.append("января")
+            case "2": monthesName.append("февраля")
+            case "3": monthesName.append("марта")
+            case "4": monthesName.append("апреля")
+            case "5": monthesName.append("мая")
+            case "6": monthesName.append("июня")
+            case "7": monthesName.append("июля")
+            case "8": monthesName.append("августа")
+            case "9": monthesName.append("сентября")
+            case "10": monthesName.append("октября")
+            case "11": monthesName.append("ноября")
+            case "12": monthesName.append("декабря")
+            default:  monthesName.append("")
+            }
+        }
+        return monthesName
+    }
+    
+    var dayOfTheWeekEN: [String] {
+        var daysOfTheWeek: [String] = []
+        for i in fullDate.indices {
+            daysOfTheWeek.append(getDate(fromDate: fullDate[i], formatter: "EEEE"))
+        }
+        return daysOfTheWeek
+    }
+    
+    var dayOfTheWeekStringRU: [String] {
+        var daysOfTheWeekString: [String] = []
+        for i in dayOfTheWeekEN.indices{
+            switch dayOfTheWeekEN[i] {
+            case "Sunday": daysOfTheWeekString.append("Воскресенье")
+            case "Monday": daysOfTheWeekString.append("Понедельник")
+            case "Tuesday": daysOfTheWeekString.append("Вторник")
+            case "Wednesday": daysOfTheWeekString.append("Среда")
+            case "Thursday": daysOfTheWeekString.append("Четверг")
+            case "Friday": daysOfTheWeekString.append("Пятница")
+            case "Saturday": daysOfTheWeekString.append("Суббота")
+            default: daysOfTheWeekString.append("")
+            }
+        }
+        return daysOfTheWeekString
+    }
+    
+    var dayForecastIcon: [Int] = []
+    var dayForecastIconImageName: [String] {
+        var daysForecastIconImageName: [String] = []
+        for i in dayForecastIcon.indices{
+            switch dayForecastIcon[i] {
+            case 200...232: daysForecastIconImageName.append("cloud.bolt.rain.fill")
+            case 300...321: daysForecastIconImageName.append("cloud.drizzle.fill")
+            case 500...531: daysForecastIconImageName.append("cloud.rain.fill")
+            case 600...622: daysForecastIconImageName.append("cloud.snow.fill")
+            case 700...781: daysForecastIconImageName.append("smoke.fill")
+            case 800: daysForecastIconImageName.append("sun.min.fill")
+            case 801...804: daysForecastIconImageName.append("cloud.fill")
+            default: daysForecastIconImageName.append("")
+            }
+        }
+        return daysForecastIconImageName
+    }
+    
+    var dayTemp: [Double] = []
+    var dayTempString: [String] {
+        var daysTempString: [String] = []
+        for i in dayTemp.indices{
+            daysTempString.append(String(format: "%.0f", dayTemp[i]))
+        }
+        return daysTempString
+    }
+    
+    var feelsLikeDayTemp: [Double] = []
+    var feelsLikeDayTempString: [String] {
+        var feelsLikeDaysTempString: [String] = []
+        for i in feelsLikeDayTemp.indices {
+            feelsLikeDaysTempString.append(String(format: "%.0f", feelsLikeDayTemp[i]))
+        }
+        return feelsLikeDaysTempString
+    }
+    
+    var daysWeatherForecast: [DayForecast] = []
+    
+    
     
     init?(weatherForecast: WeatherForecast) {
         currentTemp = weatherForecast.list.first?.main.temp ?? 0
@@ -158,19 +208,16 @@ struct MainWeather {
         pressure = weatherForecast.list.first?.main.pressure ?? 0
         humidity = weatherForecast.list.first?.main.humidity ?? 0
         for i in times {
-            byTimeTemp.append(weatherForecast.list[i].main.temp)
-        }
-        for i in times {
             timeForecast.append(weatherForecast.list[i].dtTxt)
-        }
-        for i in times {
+            byTimeTemp.append(weatherForecast.list[i].main.temp)
             guard let weatherId = weatherForecast.list[i].weather.first?.id else { return nil }
             byTimeConditionCodes.append(weatherId)
         }
-//        date = weatherForecast.list[6].dtTxt
-//        fullDate = weatherForecast.list.first?.dtTxt ?? ""
-//        dayForecastIcon = weatherForecast.list.first?.weather.first?.id ?? 0
-//        dayTemp = weatherForecast.list.first?.main.temp ?? 0
-//        feelsLikeDayTemp = weatherForecast.list.first?.main.feelsLike ?? 0
+        for i in interval {
+            fullDate.append(weatherForecast.list[i].dtTxt)
+            dayForecastIcon.append(weatherForecast.list[i].weather.first?.id ?? 0)
+            dayTemp.append(weatherForecast.list[i].main.temp)
+            feelsLikeDayTemp.append(weatherForecast.list[i].main.feelsLike)
+        }
     }
 }

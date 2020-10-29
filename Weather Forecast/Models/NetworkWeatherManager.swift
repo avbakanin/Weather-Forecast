@@ -30,6 +30,7 @@ class NetworkWeatherManager {
     }
     
     fileprivate func performeReauest(withUrlString urlString: String) {
+        
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
