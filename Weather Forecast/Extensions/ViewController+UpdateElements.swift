@@ -40,6 +40,7 @@ extension WeatherViewController {
         
         windImage.image = UIImage(systemName: "wind")
         pressureImage.image = UIImage(systemName: "speedometer")
+        humidityImage.image = UIImage(systemName: "drop")
         
         dayByDayTableView.layer.cornerRadius = dayByDayTableView.frame.size.height / 30
     }

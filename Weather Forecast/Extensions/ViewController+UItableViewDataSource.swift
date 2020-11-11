@@ -33,13 +33,13 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let icon = Int(cell.iconCodeLabel.text!) {
             switch icon {
-            case 200...232: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-            case 300...321: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-            case 500...531: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-            case 600...622: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-            case 700...781: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            case 200...232: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+            case 300...321: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+            case 500...531: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)    
+            case 600...622: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            case 700...781: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             case 800: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-            case 801...804: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            case 801...804: cell.dayForecastIcon.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             default: break
             }}
         
