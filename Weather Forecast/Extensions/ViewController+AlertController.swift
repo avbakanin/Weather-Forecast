@@ -31,10 +31,10 @@ extension WeatherViewController {
         
         let searchAction = UIAlertAction(title: "Найти", style: .default) { (action) in
             self.daysForecast = []
-            self.dayByDayTableView.reloadData()
             guard let textField = alert.textFields?.first else { return }
             guard let city = textField.text else { return }
             if city != "" {
+                self.dayByDayTableView.reloadData()
                 let cityName = city.split(separator: " ").joined(separator: "%20")
                 completionHandler(cityName)
             }
