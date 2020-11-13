@@ -34,8 +34,6 @@ extension WeatherViewController {
             guard let city = textField.text else { return }
             if city != "" {
                 let cityName = city.split(separator: " ").joined(separator: "%20")
-                self.daysForecast = []
-                self.setStartCondotionToViews()
                 completionHandler(cityName)
             }
         }

@@ -52,6 +52,7 @@ extension WeatherViewController {
         reloadingView.isHidden = true
         dayByDayTableView.isHidden = false
         
+        self.dayByDayTableView.reloadData()
     }
     
     func setStartCondotionToViews() {

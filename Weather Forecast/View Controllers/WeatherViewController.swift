@@ -48,27 +48,12 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkWeatherManager.onCompletion = {
-            [weak self] mainWeather in
-            guard let self = self else { return }
-            self.updateUserInterfaceWith(weather: mainWeather)
-            
-            DispatchQueue.main.async {
-                self.activityViewDisplaying()
-                self.dayByDayTableView.reloadData()
-            }
-        }
+        setImagesForIcons()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestLocation()
         }
         
-        setImagesForIcons()
-    }
-    
-    @IBAction func forecastByLocation(_ sender: UIButton) {
-        self.daysForecast = []
-        self.setStartCondotionToViews()
         networkWeatherManager.onCompletion = {
             [weak self] mainWeather in
             guard let self = self else { return }
@@ -76,7 +61,20 @@ class WeatherViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.activityViewDisplaying()
-                self.dayByDayTableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func forecastByLocation(_ sender: UIButton) {
+        self.setStartCondotionToViews()
+        self.daysForecast = []
+        networkWeatherManager.onCompletion = {
+            [weak self] mainWeather in
+            guard let self = self else { return }
+            self.updateUserInterfaceWith(weather: mainWeather)
+            
+            DispatchQueue.main.async {
+                self.activityViewDisplaying()
             }
             
         }
@@ -88,13 +86,12 @@ class WeatherViewController: UIViewController {
     @IBAction func findForecastInCity(_ sender: UIButton) {
         findCityForecastAlertController(title: "Введите название города (на английском)", message: nil, style: .alert)
         { [unowned self] city in
-            self.networkWeatherManager.fetchCurrentWeather(forRequestType: .city(city: city))
+            daysForecast = []
+            networkWeatherManager.fetchCurrentWeather(forRequestType: .city(city: city))
             
             DispatchQueue.main.async {
-                self.activityViewDisplaying()
-                self.dayByDayTableView.reloadData()
+                self.setStartCondotionToViews()
             }
-            
         }
     }
 }
