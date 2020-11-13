@@ -43,6 +43,22 @@ extension WeatherViewController {
         humidityImage.image = UIImage(systemName: "drop")
         
         dayByDayTableView.layer.cornerRadius = dayByDayTableView.frame.size.height / 30
+        reloadingView.layer.cornerRadius = dayByDayTableView.frame.size.height / 30
+        
+        setStartCondotionToViews()
+    }
+    
+    func activityViewDisplaying() {
+        reloadingView.isHidden = true
+        dayByDayTableView.isHidden = false
+        
+    }
+    
+    func setStartCondotionToViews() {
+        dayByDayTableView.isHidden = true
+        reloadingView.isHidden = false
+        
+        activityIndicator.startAnimating()
     }
     
 }

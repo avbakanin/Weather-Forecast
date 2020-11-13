@@ -21,7 +21,7 @@ struct List: Codable {
     let weather: [Weather]
     let wind: Wind
     let dtTxt: String
-
+    
     enum CodingKeys: String, CodingKey {
         case main, weather, wind
         case dtTxt = "dt_txt"

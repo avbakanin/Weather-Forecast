@@ -28,6 +28,9 @@ class WeatherViewController: UIViewController {
     @IBOutlet var byTimeWeatherIcons: [UIImageView]!
     @IBOutlet var byTimeWeatherTemps: [UILabel]!
     
+    @IBOutlet weak var reloadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var dayByDayTableView: UITableView!
     
     var networkWeatherManager = NetworkWeatherManager()
@@ -51,6 +54,7 @@ class WeatherViewController: UIViewController {
             self.updateUserInterfaceWith(weather: mainWeather)
             
             DispatchQueue.main.async {
+                self.activityViewDisplaying()
                 self.dayByDayTableView.reloadData()
             }
         }
@@ -60,18 +64,18 @@ class WeatherViewController: UIViewController {
         }
         
         setImagesForIcons()
-        
     }
     
     @IBAction func forecastByLocation(_ sender: UIButton) {
         self.daysForecast = []
-        self.dayByDayTableView.reloadData()
+        self.setStartCondotionToViews()
         networkWeatherManager.onCompletion = {
             [weak self] mainWeather in
             guard let self = self else { return }
             self.updateUserInterfaceWith(weather: mainWeather)
             
             DispatchQueue.main.async {
+                self.activityViewDisplaying()
                 self.dayByDayTableView.reloadData()
             }
             
@@ -87,6 +91,7 @@ class WeatherViewController: UIViewController {
             self.networkWeatherManager.fetchCurrentWeather(forRequestType: .city(city: city))
             
             DispatchQueue.main.async {
+                self.activityViewDisplaying()
                 self.dayByDayTableView.reloadData()
             }
             

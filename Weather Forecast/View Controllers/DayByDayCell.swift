@@ -24,11 +24,11 @@ class DayByDayCell: UITableViewCell {
     
     func set(date: DayForecast) {
         
-            self.dateLabel.text = date.date
-            self.dayOfTheWeekLabel.text = date.dayOfTheWeek
-            self.dayForecastIcon.image = date.dayForecastIcon
-            self.dayTemp.text = date.dayTemp
-            self.feelsLikeDayTemp.text = date.feelsLikeDayTemp
-            self.iconCodeLabel.text = String(date.iconCode)
+        self.dateLabel.text = date.date
+        self.dayOfTheWeekLabel.text = date.dayOfTheWeek
+        self.dayForecastIcon.image = date.dayForecastIcon
+        self.dayTemp.text = date.dayTemp
+        self.feelsLikeDayTemp.text = date.feelsLikeDayTemp
+        self.iconCodeLabel.text = String(date.iconCode)
     }
 }

@@ -30,17 +30,17 @@ extension WeatherViewController {
         }
         
         let searchAction = UIAlertAction(title: "Найти", style: .default) { (action) in
-            self.daysForecast = []
             guard let textField = alert.textFields?.first else { return }
             guard let city = textField.text else { return }
             if city != "" {
-                self.dayByDayTableView.reloadData()
                 let cityName = city.split(separator: " ").joined(separator: "%20")
+                self.daysForecast = []
+                self.setStartCondotionToViews()
                 completionHandler(cityName)
             }
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-
+        
         alert.addAction(searchAction)
         alert.addAction(cancelAction)
         
