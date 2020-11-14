@@ -26,10 +26,10 @@ class NetworkWeatherManager {
             urlString = "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric"
         }
         
-        performeReauest(withUrlString: urlString)
+        performeRequest(withUrlString: urlString)
     }
     
-    fileprivate func performeReauest(withUrlString urlString: String) {
+    fileprivate func performeRequest(withUrlString urlString: String) {
         
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)

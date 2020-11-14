@@ -16,12 +16,6 @@ class DayByDayCell: UITableViewCell {
     @IBOutlet weak var feelsLikeDayTemp: UILabel!
     @IBOutlet weak var iconCodeLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     func set(date: DayForecast) {
         
         self.dateLabel.text = date.date

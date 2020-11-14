@@ -48,50 +48,24 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setImagesForIcons()
+        setVisualComponents()
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        }
-        
-        networkWeatherManager.onCompletion = {
-            [weak self] mainWeather in
-            guard let self = self else { return }
-            self.updateUserInterfaceWith(weather: mainWeather)
-            
-            DispatchQueue.main.async {
-                self.activityViewDisplaying()
-            }
-        }
+        displayForecastByLocation()
     }
     
     @IBAction func forecastByLocation(_ sender: UIButton) {
-        self.setStartCondotionToViews()
+        self.setStartConditionToViews()
         self.daysForecast = []
-        networkWeatherManager.onCompletion = {
-            [weak self] mainWeather in
-            guard let self = self else { return }
-            self.updateUserInterfaceWith(weather: mainWeather)
-            
-            DispatchQueue.main.async {
-                self.activityViewDisplaying()
-            }
-            
-        }
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        }
+
+        displayForecastByLocation()
     }
     
     @IBAction func findForecastInCity(_ sender: UIButton) {
         findCityForecastAlertController(title: "Введите название города (на английском)", message: nil, style: .alert)
         { [unowned self] city in
+            self.setStartConditionToViews()
             daysForecast = []
             networkWeatherManager.fetchCurrentWeather(forRequestType: .city(city: city))
-            
-            DispatchQueue.main.async {
-                self.setStartCondotionToViews()
-            }
         }
     }
 }

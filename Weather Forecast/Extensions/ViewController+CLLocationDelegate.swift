@@ -21,4 +21,16 @@ extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
+    
+    func displayForecastByLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
+        
+        networkWeatherManager.onCompletion = {
+            [weak self] mainWeather in
+            guard let self = self else { return }
+            self.updateUserInterfaceWith(weather: mainWeather)
+        }
+    }
 }
